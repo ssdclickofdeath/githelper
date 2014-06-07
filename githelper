@@ -3,7 +3,7 @@
 # Read the full text of the license in the file named
 # "LICENSE" in this software distribution.
 
-CURDIR=$(pwd)
+CURDIR=$(pwd) #Get working directory to later show so a user knows if he's in the right one.
 echo "========="
 echo "GITHELPER"
 echo "========="
@@ -13,12 +13,15 @@ echo -n "Enter commit description:"
 read DESCRIPTION
 echo ""
 
+#Add all files in the repository to prepare for a commit
 echo "Adding all changed files..."
 git add .
 
+#Do the actual commit with the DESCRIPTION variable as the description
 echo "Commiting..."
 git commit -m "$DESCRIPTION"
 
+#Well, push to the remote repository, of course!
 echo "Pushing to remote repository..."
 git push
 
