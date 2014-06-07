@@ -1,0 +1,26 @@
+#!/bin/sh
+# Githelper is released under the Expat/MIT license.
+# Read the full text of the license in the file named
+# "LICENSE" in this software distribution.
+
+CURDIR=$(pwd)
+echo "========="
+echo "GITHELPER"
+echo "========="
+echo ""
+echo "Using the $CURDIR repository."
+echo -n "Enter commit description:"
+read DESCRIPTION
+echo ""
+
+echo "Adding all changed files..."
+git add .
+
+echo "Commiting..."
+git commit -m "$DESCRIPTION"
+
+echo "Pushing to remote repository..."
+git push
+
+echo ""
+echo "All done. Thank you."
