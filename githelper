@@ -26,13 +26,8 @@ echo "Pushing to remote repository..."
 git push
 
 if [ $? == 0 ]; then
-    echo -en "\n"
-    echo "Push to remote repository successful."
-#    exit 0
-fi
-
-if [ $? -ne "0" ]; then
-    echo -en "\n"
-    echo "An error occurred."
-    exit
+    echo -en "\nPush to remote repository successful."
+    exit 0
+else
+    echo -en "\nAn error occurred."
 fi
