@@ -25,6 +25,8 @@ git commit -m "$DESCRIPTION"
 echo "Pushing to remote repository..."
 git push
 
+echo -en "\n"
+
 if [ $? = 0 ]; then
     echo "Push to remote repository successful."
     exit 0
