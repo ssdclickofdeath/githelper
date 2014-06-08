@@ -27,7 +27,7 @@ git push
 
 echo -en "\n"
 
-if [ $? = 0 ]; then
+if [ $? == 0 ]; then
     echo "Push to remote repository successful."
 #    exit 0
 fi
