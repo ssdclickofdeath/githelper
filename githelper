@@ -29,7 +29,7 @@ echo -en "\n"
 
 if [ $? = 0 ]; then
     echo "Push to remote repository successful."
-    exit 0
+#    exit 0
 fi
 
 if [ $? != 0 ]; then
