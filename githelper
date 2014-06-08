@@ -1,4 +1,3 @@
-
 #!/bin/sh
 # Githelper is released under the Expat/MIT license.
 # Read the full text of the license in the file named
@@ -9,7 +8,7 @@ echo "========="
 echo "GITHELPER"
 echo "========="
 echo ""
-echo "Using the $CURDIR repository."
+echo "Using the $CURDIR repository. (Press Ctrl+C to quit.)"
 echo -n "Enter commit description:"
 read DESCRIPTION
 echo ""
@@ -22,9 +21,6 @@ git add .
 echo "Commiting..."
 git commit -m "$DESCRIPTION"
 
-#Well, push to the remote repository, of course!
+#Push to the remote repository, of course!
 echo "Pushing to remote repository..."
 git push
-
-echo ""
-echo "All done. Thank you."
