@@ -79,8 +79,8 @@ ENDGITOUTPUT
 
 if [ $PUSHOUTPUT == 0 ]
   then
-    echo -e "\nPush to remote repository successful."
+    echo "Push to remote repository successful."
     exit 0
 else
-    echo -e "\nAn error occurred."
+    echo "An error occurred."
 fi
