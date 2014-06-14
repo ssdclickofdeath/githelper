@@ -1,14 +1,47 @@
 #!/bin/bash
 #
-# Githelper is released under the Expat/MIT license.
-# Read the full text of the license in the file named
-# "LICENSE" in this software distribution.
+# Githelper
+#
+# Save time by automating commands required to update an
+# online git repository.
+#
+# Copyright (C) 2014 Joshua Wells
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
 CURDIR=$(pwd) #Get working directory to later show so a user knows if he's in the right one.
-echo "========="
-echo "GITHELPER"
-echo "========="
+
+function BEGINGITOUTPUT
+  {
+    echo -e "\n=====BEGIN GIT OUTPUT====="
+  }
+
+function ENDGITOUTPUT
+  {
+    echo -e "======END GIT OUTPUT======\n"
+  }
+
+echo -e "\nGITHELPER"
+echo "(C) 2014 Joshua Wells"
+echo "This software is distributed WITHOUT ANY WARRANTY."
 echo -en "\n"
+
 echo "Using the $CURDIR repository. (Press Ctrl+C to quit.)"
 echo -n "Enter commit description:"
 read DESCRIPTION
@@ -19,14 +52,33 @@ echo "Adding all changed files..."
 git add .
 
 #Do the actual commit with previously entered description as the description
-echo "Commiting..."
+echo "Committing..."
+
+BEGINGITOUTPUT
+
 git commit -m "$DESCRIPTION"
+COMMITOUTPUT=$?
+
+ENDGITOUTPUT
+
+if [ $COMMITOUTPUT != 0 ]
+  then
+    echo "Error committing. Did you forget to enter a commit description?."
+    exit 1
+fi
 
 #Push to the remote repository, of course!
 echo "Pushing to remote repository..."
-git push
 
-if [ $? == 0 ]; then
+BEGINGITOUTPUT
+
+git push
+PUSHOUTPUT=$?
+
+ENDGITOUTPUT
+
+if [ $PUSHOUTPUT == 0 ]
+  then
     echo -e "\nPush to remote repository successful."
     exit 0
 else
